@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # 🌟 Estructuras de Datos con Nodos en TypeScript
 
 ¡Bienvenido a nuestro proyecto! Este repositorio contiene implementaciones de estructuras de datos fundamentales utilizando nodos en TypeScript. En este software, hemos creado y manipulado listas doblemente enlazadas, pilas y colas.
@@ -36,8 +36,8 @@ Una cola es una estructura de datos FIFO (First In, First Out) donde el primer e
 
 #### Funcionalidades:
 
-- **enqueue(value: T)**: Añadir un nodo al final de la cola.
-- **dequeue()**: Eliminar el nodo del frente de la cola.
+- **push(value: T)**: Añadir un nodo al final de la cola.
+- **pop()**: Eliminar el nodo del frente de la cola.
 - **isEmpty()**: Verificar si la cola está vacía.
 - **print()**: Imprimir todos los valores de la cola.
 
@@ -46,20 +46,21 @@ Una cola es una estructura de datos FIFO (First In, First Out) donde el primer e
 Para comenzar a usar este proyecto, sigue estos pasos:
 
 1. **Clonar el Repositorio:**
-    ```bash
-    git clone https://github.com/tu-usuario/tu-repositorio.git
-    ```
+
+   ```bash
+   git clone https://github.com/juancamolina6/use-nodes.git
+   ```
 
 2. **Instalar Dependencias:**
-    ```bash
-    cd tu-repositorio
-    npm install
-    ```
+
+   ```bash
+   npm install
+   ```
 
 3. **Ejecutar el Código:**
-    ```bash
-    npx ts-node tu-archivo.ts
-    ```
+   ```bash
+   npx ts-node DoublyListNode.ts
+   ```
 
 ## 🛠️ Ejemplos de Uso
 
@@ -70,9 +71,10 @@ const list = new DoublyLinkedList<number>();
 list.append(10);
 list.append(20);
 list.append(30);
-console.log("DoublyLinkedList desde el comienzo:");
+console.log('DoublyLinkedList desde el comienzo:');
 list.print(); // Output: 10, 20, 30
 ```
+````
 
 ### Pila
 
@@ -81,11 +83,11 @@ const stack = new Stack<number>();
 stack.push(1);
 stack.push(2);
 stack.push(3);
-console.log("Stack después de varios push:");
+console.log('Stack después de varios push:');
 stack.print(); // Output: 3, 2, 1
 
-console.log("Elemento pop de Stack:", stack.pop()); // Output: 3
-console.log("Stack después de pop:");
+console.log('Elemento pop de Stack:', stack.pop()); // Output: 3
+console.log('Stack después de pop:');
 stack.print(); // Output: 2, 1
 ```
 
@@ -96,22 +98,16 @@ const queue = new Queue<number>();
 queue.enqueue(1);
 queue.enqueue(2);
 queue.enqueue(3);
-console.log("Queue después de varios enqueue:");
+console.log('Queue después de varios enqueue:');
 queue.print(); // Output: 1, 2, 3
 
-console.log("Elemento dequeue de Queue:", queue.dequeue()); // Output: 1
-console.log("Queue después de dequeue:");
+console.log('Elemento dequeue de Queue:', queue.dequeue()); // Output: 1
+console.log('Queue después de dequeue:');
 queue.print(); // Output: 2, 3
 ```
+
 Hecho por Camilo(https://github.com/juancamolina6)
+
 ```
 
-### Explicación
-
-- **Encabezado**: El título y una breve descripción del proyecto con un emoji para hacerlo más atractivo.
-- **Descripción del Proyecto**: Una sección que describe brevemente lo que se ha implementado en el proyecto.
-- **Funcionalidades**: Listas de las funcionalidades principales de cada clase (`DoublyLinkedList`, `Stack`, y `Queue`).
-- **Cómo Empezar**: Instrucciones claras sobre cómo clonar el repositorio, instalar dependencias y ejecutar el código.
-- **Ejemplos de Uso**: Ejemplos prácticos de cómo usar las diferentes estructuras de datos implementadas.
-- **Licencia**: Información sobre la licencia del proyecto.
-- **Créditos**: Una línea al final para darle un toque personal al README.
+```
