@@ -1,7 +1,7 @@
-class DoublyListNode<T> {
+class Nodo<T> {
     value: T;
-    next: DoublyListNode<T> | null;
-    prev: DoublyListNode<T> | null;
+    next: Nodo<T> | null;
+    prev: Nodo<T> | null;
 
     constructor(value: T) {
         this.value = value;
@@ -11,8 +11,8 @@ class DoublyListNode<T> {
 }
 
 class DoublyLinkedList<T> {
-    head: DoublyListNode<T> | null;
-    tail: DoublyListNode<T> | null;
+    head: Nodo<T> | null;
+    tail: Nodo<T> | null;
     length: number;
 
     constructor() {
@@ -22,7 +22,7 @@ class DoublyLinkedList<T> {
     }
 
     append(value: T): void {
-        const newNode = new DoublyListNode(value);
+        const newNode = new Nodo(value);
         if (!this.tail) {
             this.head = newNode;
             this.tail = newNode;
@@ -35,7 +35,7 @@ class DoublyLinkedList<T> {
     }
 
     prepend(value: T): void {
-        const newNode = new DoublyListNode(value);
+        const newNode = new Nodo(value);
         if (!this.head) {
             this.head = newNode;
             this.tail = newNode;
@@ -80,6 +80,64 @@ class DoublyLinkedList<T> {
             current = current.next;
         }
     }
+    search(value: T): Nodo<T> | null {
+        let current = this.head;
+        while (current !== null) {
+            if (current.value === value) {
+                return current;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+    nodeDelete(value: T):Nodo<T> | null{
+        let current = this.head;
+
+        // Si la lista está vacía
+        if (!current) {
+            return null;
+        }
+    
+        // Si la lista contiene solo un nodo y ese nodo tiene el valor buscado
+        if (current.value === value && !current.next) {
+            this.head = null;
+            this.tail = null;
+            return current;
+        }
+        while (current !== null) {
+            if (current.value === value) {
+                if (current === this.head) {
+                    this.head = current.next;
+                    if (this.head) {
+                        this.head.prev = null;
+                        return current;
+                    }
+                }
+                if(current === this.tail){
+                    this.head = current.prev
+                    if(this.tail){
+                        this.tail.next = null
+                        return current;
+                    }
+                }
+                if (current.prev) {
+                    current.prev.next = current.next;
+                    return current;
+                }
+                if (current.next) {
+                    current.next.prev = current.prev;
+                    return current;
+                }
+    
+                // Eliminar las referencias del nodo
+                current.next = null;
+                current.prev = null;
+            }
+            current = current.next;
+        }
+        return null;
+
+    }
 }
 
 class Stack<T> {
@@ -95,6 +153,9 @@ class Stack<T> {
 
     pop(): T | null {
         return this.list.removeHead();
+    }
+    search(value: T): Nodo<T> | null {
+        return this.list.search(value);
     }
 
     isEmpty(): boolean {
@@ -128,6 +189,9 @@ class Queue<T> {
     print(): void {
         this.list.print();
     }
+    search(value: T): Nodo<T> | null {
+        return this.list.search(value);
+    }
 }
 
 
@@ -138,9 +202,19 @@ const list = new DoublyLinkedList<number>();
 list.append(10);
 list.append(20);
 list.append(30);
+list.append(50);
+list.append(60);
 
 console.log("Lista desde el comienzo:");
 list.print();
+
+console.log('buscando nodo Doubly Linked')
+const nodeSerchDoublyLinked = list.search(20)
+if(!nodeSerchDoublyLinked){
+    console.log('no se encontro el nodo')
+}else{
+    console.log('nodo encontrado: '+nodeSerchDoublyLinked.value)
+}
 
 // Añadir elementos al principio de la lista
 list.prepend(5);
@@ -159,6 +233,13 @@ console.log("Elemento eliminado del final:", removedTail);
 console.log("Lista después de eliminar el último elemento:");
 list.print(); 
 
+//Eliminar un nodo en cualquier parte de la lista 
+const deleteNode = list.nodeDelete(30);
+console.log("Nodo eliminado", deleteNode?.value)
+console.log("Lista después de eliminar el nodo:");
+list.print()
+
+
 // Uso de Stack
 console.log('Stack use')
 const stack = new Stack<number>();
@@ -167,6 +248,14 @@ stack.push(2);
 stack.push(3);
 console.log("Pila o Stack desde el comienzo:");
 stack.print();
+console.log('buscando nodo stack')
+const nodeSerchStack = stack.search(2)
+if(!nodeSerchStack){
+    console.log('no se encontro el nodo')
+}else{
+    console.log('nodo encontrado: '+nodeSerchStack.value)
+}
+
 
 console.log("Elemento 1 pop o eliminado de Stack:", stack.pop()); 
 console.log("Elemento 2 pop o eliminado de Stack:", stack.pop()); 
@@ -181,6 +270,12 @@ queue.push(2);
 queue.push(3);
 console.log("Queue o cola desde el comienzo:");
 queue.print(); 
+const nodeSerchQueue = queue.search(2)
+if(!nodeSerchQueue){
+    console.log('no se encontro el nodo')
+}else{
+    console.log('nodo encontrado: '+nodeSerchQueue.value)
+}
 
 console.log("Elemento pop o eliminado de Queue:", queue.pop());
 console.log("Elemento pop o eliminado de Queue:", queue.pop());
